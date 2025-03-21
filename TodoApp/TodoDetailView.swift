@@ -7,13 +7,35 @@
 
 import SwiftUI
 
-struct TodDetailView: View {
+struct TodoDetailView: View {
+    
+    @State var todo:Todo
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack {
+            TextField("투두 타이틀", text:
+                        $todo.title)
+            .font(.title2)
+            .padding(5)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.gray, lineWidth: 2)
+            )
+            
+            TextEditor(text: $todo.detail)
+                .padding(5)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.gray, lineWidth: 2)
+                )
+        }
+        .padding()
+        .navigationTitle("Edit Task 📝")
+        
+        
     }
 }
 
-
 #Preview {
-    TodDetailView()
+    TodoDetailView(todo: Todo(title: "타이틀"))
 }
